@@ -15,6 +15,14 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
 
+    - name: Check translations (i18n)
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y gettext
+        po/i18n.sh check-pot
+        po/i18n.sh validate
+        tests/test_i18n.sh
+
     - name: Prepare Package Structure
       run: |
         mkdir -p pkg/usr/bin
@@ -22,7 +30,9 @@ jobs:
         mkdir -p pkg/DEBIAN
         
         cp src/font-installer.sh pkg/usr/bin/font-installer-gui
-        cp src/launcher.desktop pkg/usr/share/applications/font-installer.desktop
+        msgfmt --desktop --template=src/launcher.desktop.in -d po \
+               -o pkg/usr/share/applications/font-installer.desktop
+        po/i18n.sh compile pkg/usr/share/locale
         chmod +x pkg/usr/bin/font-installer-gui
 
     - name: Create Control File
@@ -37,7 +47,7 @@ jobs:
         Architecture: all
         Maintainer: Natanael Barbosa Santos
         Uploaders: Charles Santana <charlesstna@proton.me>
-        Depends: yad, imagemagick
+        Depends: yad, imagemagick, gettext-base
         Description: $DESCRIPTION
         EOF
 

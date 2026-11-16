@@ -17,7 +17,10 @@ mkdir -p "${working_dir}/usr/bin"            \
          "${working_dir}/DEBIAN"
 
 cp "${HERE}/src/font-installer.sh"    "${working_dir}/usr/bin/font-installer-gui"
-cp "${HERE}/src/launcher.desktop"     "${working_dir}/usr/share/applications/font-installer.desktop"
+# .desktop traduzido a partir do modelo + catálogos .mo (requer gettext)
+msgfmt --desktop --template="${HERE}/src/launcher.desktop.in" -d "${HERE}/po" \
+       -o "${working_dir}/usr/share/applications/font-installer.desktop" || exit 1
+"${HERE}/po/i18n.sh" compile "${working_dir}/usr/share/locale" || exit 1
 
 chmod a+x "${working_dir}/usr/bin/font-installer-gui"
 
@@ -26,7 +29,7 @@ chmod a+x "${working_dir}/usr/bin/font-installer-gui"
  echo "Version: 1.0"
  echo "Architecture: all"
  echo "Maintainer: Natanael Barbosa Santos"
- echo "Depends: yad, imagemagick"
+ echo "Depends: yad, imagemagick, gettext-base"
  echo "Description: $(cat ${HERE}/README.md  | sed -n '1p')"
  echo
 ) > "${working_dir}/DEBIAN/control"

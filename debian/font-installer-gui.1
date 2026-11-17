@@ -1,0 +1,43 @@
+.TH FONT-INSTALLER-GUI 1 "2026-11-17" "instalador-de-fontes 1.1.0" "Mainuan"
+.SH NAME
+font-installer-gui \- preview and install a font file for the current user
+.SH SYNOPSIS
+.B font-installer-gui
+.I font-file
+.SH DESCRIPTION
+.B font-installer-gui
+reads the font file with
+.BR fc-scan (1)
+and shows, in a
+.BR yad (1)
+window, a sample text rendered in that font together with its name,
+style, type, family and foundry.
+.PP
+When
+.B Install
+is chosen, the file is copied to
+.I ~/.local/share/fonts
+and the font cache is rebuilt with
+.BR fc-cache (1).
+Nothing is written outside the user's home directory and no
+administrator rights are needed.
+.PP
+TrueType, OpenType, WOFF and WOFF2 files are offered by the file manager
+through the desktop entry
+.IR font-installer.desktop .
+.SH EXIT STATUS
+.B 0
+when the font was installed or the window was closed;
+.B 1
+when no existing file was given or the file is not a font.
+.SH ENVIRONMENT
+The interface follows
+.BR LANGUAGE ,
+.BR LC_ALL ,
+.BR LC_MESSAGES " and " LANG .
+.SH FILES
+.TP
+.I ~/.local/share/fonts
+Destination of the installed fonts.
+.SH EXAMPLE
+font-installer-gui ~/Downloads/NotoSans-Regular.ttf

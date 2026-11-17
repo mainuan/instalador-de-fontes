@@ -1,0 +1,63 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+    tags: ['v[0-9]*']
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.ref_type != 'tag' }}
+
+jobs:
+  package:
+    permissions:
+      contents: write # only the release job uses it, and only for v* tags
+    uses: mainuan/.github/.github/workflows/debian-package.yml@2409a50535befe90ac3bbfc4db6eed7d65eac4e5
+    with:
+      package: instalador-de-fontes
+      release-title: Instalador de fontes
+      test-command: po/i18n.sh check-pot && po/i18n.sh validate && bash tests/test_installer.sh
+      # locales-all: o teste em pt_BR precisa de um locale real (a glibc ignora
+      # LANGUAGE em C.UTF-8); fonts-dejavu-core: uma fonte real para instalar.
+      extra-install-packages: locales-all fonts-dejavu-core
+      smoke-command: |
+        font=/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf
+        test -f "$font"
+        test -f /usr/share/locale/pt_BR/LC_MESSAGES/instalador-de-fontes.mo
+        test -f /usr/share/locale/ja/LC_MESSAGES/instalador-de-fontes.mo
+        test -f /usr/share/man/man1/font-installer-gui.1.gz
+        grep -qx 'Exec=font-installer-gui %f' /usr/share/applications/font-installer.desktop
+        grep -qx 'Name\[pt_BR\]=Instalar fonte' /usr/share/applications/font-installer.desktop
+        # Sem arquivo: mensagem traduzida e código de saída 1.
+        rc=0; out="$(LANGUAGE=pt_BR LANG=pt_BR.UTF-8 font-installer-gui 2>&1)" || rc=$?
+        echo "$out"; test "$rc" -eq 1; grep -qx 'Você precisa fornecer um arquivo!' <<<"$out"
+        rc=0; out="$(LANG=C.UTF-8 font-installer-gui /nao/existe.ttf 2>&1)" || rc=$?
+        test "$rc" -eq 1; grep -qx 'You need to provide a file!' <<<"$out"
+        # Instalação real (fc-scan, convert, fc-cache) com um yad falso que
+        # registra os argumentos, guarda a pré-visualização e confirma.
+        mkdir -p "$HOME/stub"
+        cat > "$HOME/stub/yad" <<'STUB'
+        #!/bin/sh
+        for a in "$@"; do
+          printf '%s\n' "$a" >> "$HOME/yad.log"
+          case $a in --image=*) cp "${a#--image=}" "$HOME/preview.png" ;; esac
+        done
+        case " $* " in *" --progress "*) cat > /dev/null ;; esac
+        exit 0
+        STUB
+        chmod +x "$HOME/stub/yad"
+        LANGUAGE=pt_BR LANG=pt_BR.UTF-8 PATH="$HOME/stub:$PATH" font-installer-gui "$font"
+        cat "$HOME/yad.log"
+        cmp "$font" "$HOME/.local/share/fonts/DejaVuSans.ttf"
+        grep -qx -- '--button=Instalar:0' "$HOME/yad.log"
+        grep -qx -- '--field=DejaVu Sans:LBL' "$HOME/yad.log"
+        grep -qxF -- '--text=A instalação foi um sucesso!\n' "$HOME/yad.log"
+        test "$(head -c 4 "$HOME/preview.png" | tail -c 3)" = PNG
+        fc-list : file > "$HOME/fc-list.txt"
+        grep -q "$HOME/.local/share/fonts/DejaVuSans.ttf" "$HOME/fc-list.txt"

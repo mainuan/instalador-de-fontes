@@ -1,0 +1,30 @@
+Source: instalador-de-fontes
+Section: fonts
+Priority: optional
+Maintainer: Natanael Barbosa Santos <natanaelgplay@gmail.com>
+Uploaders: Charles Santana <charlesstna@proton.me>
+Build-Depends: debhelper-compat (= 13),
+               desktop-file-utils,
+               gettext
+Standards-Version: 4.7.2
+Rules-Requires-Root: no
+Homepage: https://github.com/mainuan/instalador-de-fontes
+Vcs-Browser: https://github.com/mainuan/instalador-de-fontes
+Vcs-Git: https://github.com/mainuan/instalador-de-fontes.git
+
+Package: instalador-de-fontes
+Architecture: all
+Depends: ${misc:Depends},
+         fontconfig,
+         gettext-base,
+         imagemagick,
+         yad
+Description: preview and install a font file for the current user
+ instalador-de-fontes opens a font file (TrueType, OpenType, WOFF or
+ WOFF2) in a small window with a sample text rendered in that font and
+ its name, style, type, family and foundry. When confirmed, the font is
+ copied to ~/.local/share/fonts and the fontconfig cache is refreshed.
+ .
+ The program, font-installer-gui, is offered by the file manager for
+ font files. The interface is translated (gettext) and follows the
+ language of the session.

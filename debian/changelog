@@ -1,0 +1,13 @@
+instalador-de-fontes (1.1.0) resolute; urgency=medium
+
+  * Interface traduzida (gettext) em 33 idiomas, seguindo o idioma da sessão;
+    o .desktop também é traduzido.
+  * O .desktop executa o programa instalado (/usr/bin/font-installer-gui) e
+    abre um arquivo por vez (%f), já que o programa trata um arquivo só.
+  * Sem argumento de arquivo válido, o programa termina com erro (código 1).
+  * A família da fonte é exibida sem o sufixo "'s".
+  * Empacotamento Debian completo (debhelper), página de manual e pipeline de
+    CI com testes, lintian e teste de instalação e remoção; a release
+    "continuous" publicada a cada push foi substituída por releases por tag.
+
+ -- Charles Santana <charlesstna@proton.me>  Tue, 17 Nov 2026 14:00:00 -0300

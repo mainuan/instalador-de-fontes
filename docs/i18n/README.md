@@ -22,7 +22,8 @@ po/LINGUAS                 idiomas instalados (hoje só pt_BR)
 po/instalador-de-fontes.pot
 po/pt_BR.po
 src/launcher.desktop.in    modelo do .desktop (Name em inglês)
-tests/test_i18n.sh         teste com yad/fc-scan/fc-cache/convert falsos
+tests/test_i18n.sh         teste de i18n com yad/fc-scan/fc-cache/convert falsos
+tests/test_installer.sh    teste funcional (instalar, cancelar, erros) com os mesmos stubs
 ```
 
 ## Tarefas
@@ -37,11 +38,12 @@ tests/test_i18n.sh        # sem janelas: stubs em PATH temporário, HOME tempor�
 
 ## Empacotamento
 
-`build.sh` e o workflow `.github/workflows/blank.yml` geram
-`/usr/share/applications/font-installer.desktop` com `msgfmt --desktop` e instalam
+O pacote Debian (`debian/`) gera `/usr/share/applications/font-installer.desktop`
+com `msgfmt --desktop` e instala
 `/usr/share/locale/<lang>/LC_MESSAGES/instalador-de-fontes.mo`
-(`po/i18n.sh compile`). Ambos exigem `gettext` no build; o pacote passa a depender
-de `gettext-base`. O workflow roda `check-pot`, `validate` e o teste.
+(`po/i18n.sh compile`). O build exige `gettext`; o pacote depende de
+`gettext-base`. O CI (`.github/workflows/ci.yml`) roda `check-pot`, `validate`
+e os testes; o teste de fumaça confere a interface em pt_BR no pacote instalado.
 
 ## Particularidades
 
@@ -52,9 +54,7 @@ de `gettext-base`. O workflow roda `check-pot`, `validate` e o teste.
   cegonhas felizes.") só em `po/pt_BR.po`.
 * **Marca legada:** o msgid do título é genérico ("Font Installer"), mas o pt_BR
   mantém "Instalador de fontes do Tiger OS". O `.desktop` ainda tem
-  `Exec=/usr/tiger_tools/font-installer.sh` e `Categories=X-TigerTools;`
-  (o pacote instala `/usr/bin/font-installer-gui`); não alterado — pendência.
+  `Categories=X-TigerTools;` (é `NoDisplay=true`, não aparece no menu).
 * Rótulos do formulário são passados ao yad como `RÓTULO:LBL`; traduções não
   devem conter `!` no fim de rótulos nem quebras de linha.
-* O texto `'s` após a família (`Família: Foo's`) e os valores lidos do `fc-scan`
-  não são traduzidos.
+* Os valores lidos do `fc-scan` não são traduzidos.

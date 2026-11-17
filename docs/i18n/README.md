@@ -54,7 +54,7 @@ e os testes; o teste de fumaça confere a interface em pt_BR no pacote instalado
   cegonhas felizes.") só em `po/pt_BR.po`.
 * **Marca legada:** o msgid do título é genérico ("Font Installer"), mas o pt_BR
   mantém "Instalador de fontes do Tiger OS". O `.desktop` ainda tem
-  `Categories=X-TigerTools;` (é `NoDisplay=true`, não aparece no menu).
+  `Categories=Utility;X-TigerTools;` (é `NoDisplay=true`, não aparece no menu).
 * Rótulos do formulário são passados ao yad como `RÓTULO:LBL`; traduções não
   devem conter `!` no fim de rótulos nem quebras de linha.
 * Os valores lidos do `fc-scan` não são traduzidos.

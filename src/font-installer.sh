@@ -16,7 +16,7 @@ fi
 
 [ -f "${1}" ] || {
   gettext "You need to provide a file!"; echo
-  exit
+  exit 1
 }
 
 font_file=$(readlink -f "${1}")
@@ -47,7 +47,7 @@ sample_text=$(gettext "The quick brown fox jumps over the lazy dog")
 convert -size 736x240 -background white -font "${font_file}" -pointsize 64 -fill black -gravity center caption:"${sample_text}" -flatten "${preview_file}"
 
 # Translators: field labels of the font details form; keep the trailing colon.
-yad --center --borders=32 --image-on-top --image="${preview_file}" --form --field=" ":LBL --field="$(gettext "Name:")":LBL --field="$(gettext "Style:")":LBL --field="$(gettext "Type:")":LBL --field="$(gettext "Family:")":LBL --field="$(gettext "Foundry:") ":LBL --field=" ":LBL --field=" ":LBL --field="${font_name}":LBL --field="${font_style}":LBL --field="${font_type}":LBL --field="${font_family}'s":LBL --field="${font_foundry}":LBL --field=" ":LBL --columns=2 --button="$(gettext "Cancel")":252 --button="$(gettext "Install")":0 --title="$(eval_gettext "Font Installer - \$base_name")" --window-icon=font-ttf --fixed && {
+yad --center --borders=32 --image-on-top --image="${preview_file}" --form --field=" ":LBL --field="$(gettext "Name:")":LBL --field="$(gettext "Style:")":LBL --field="$(gettext "Type:")":LBL --field="$(gettext "Family:")":LBL --field="$(gettext "Foundry:") ":LBL --field=" ":LBL --field=" ":LBL --field="${font_name}":LBL --field="${font_style}":LBL --field="${font_type}":LBL --field="${font_family}":LBL --field="${font_foundry}":LBL --field=" ":LBL --columns=2 --button="$(gettext "Cancel")":252 --button="$(gettext "Install")":0 --title="$(eval_gettext "Font Installer - \$base_name")" --window-icon=font-ttf --fixed && {
 
   mkdir -p "${HOME}/.local/share/fonts"
   cp "${font_file}" "${HOME}/.local/share/fonts"

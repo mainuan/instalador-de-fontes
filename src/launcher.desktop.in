@@ -1,6 +1,6 @@
 [Desktop Entry]
 Type=Application
-Exec=font-installer-gui %F
+Exec=font-installer-gui %f
 Name=Install Font
 X-KDE-StartupNotify=true
 Icon=font-ttf

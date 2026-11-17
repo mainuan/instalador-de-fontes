@@ -1,0 +1,94 @@
+# Russian translations for instalador-de-fontes package.
+# Copyright (C) 2026 Mainuan
+# This file is distributed under the same license as the instalador-de-fontes package.
+# Automatically generated, 2026.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: instalador-de-fontes\n"
+"Report-Msgid-Bugs-To: https://github.com/mainuan\n"
+"POT-Creation-Date: 2026-11-16 11:20-0300\n"
+"PO-Revision-Date: 2026-11-16 11:20-0300\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: ru <https://github.com/mainuan>\n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=n==1 ? 3 : n%10==1 && n%100!=11 ? 0 : "
+"n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+
+#: src/font-installer.sh:18
+msgid "You need to provide a file!"
+msgstr "Необходимо указать файл!"
+
+#: src/font-installer.sh:25
+msgid "Font Installer"
+msgstr "Установка шрифтов"
+
+#. Translators: yad button label (generic confirmation).
+#: src/font-installer.sh:27
+msgid "OK"
+msgstr "ОК"
+
+#: src/font-installer.sh:32
+#, sh-format
+msgid "The file '$font_file' is not a valid font file!"
+msgstr "Файл «$font_file» не является допустимым файлом шрифта!"
+
+#. Translators: sample text rendered with the font being previewed. Use a short
+#. pangram (a sentence containing every letter) or a short typical sentence in
+#. your language, so users can judge how the font renders it.
+#: src/font-installer.sh:46
+msgid "The quick brown fox jumps over the lazy dog"
+msgstr "Съешь же ещё этих мягких французских булок, да выпей чаю"
+
+# from mainuan-grub-editor
+#: src/font-installer.sh:50
+msgid "Cancel"
+msgstr "Отмена"
+
+#: src/font-installer.sh:50
+msgid "Family:"
+msgstr "Гарнитура:"
+
+#: src/font-installer.sh:50
+#, sh-format
+msgid "Font Installer - $base_name"
+msgstr "Установка шрифтов — $base_name"
+
+#: src/font-installer.sh:50
+msgid "Foundry:"
+msgstr "Производитель:"
+
+#: src/font-installer.sh:50
+msgid "Install"
+msgstr "Установить"
+
+# from mainuan-grub-editor
+#. Translators: field labels of the font details form; keep the trailing colon.
+#: src/font-installer.sh:50
+msgid "Name:"
+msgstr "Имя:"
+
+#: src/font-installer.sh:50
+msgid "Style:"
+msgstr "Начертание:"
+
+# from mainuan-grub-editor
+#: src/font-installer.sh:50
+msgid "Type:"
+msgstr "Тип:"
+
+#: src/font-installer.sh:55
+#, sh-format
+msgid "Installing the font $font_name $font_style"
+msgstr "Установка шрифта $font_name $font_style"
+
+#: src/font-installer.sh:57
+msgid "The installation was successful!"
+msgstr "Установка успешно завершена!"
+
+#: src/launcher.desktop.in:4
+msgid "Install Font"
+msgstr "Установить шрифт"

@@ -1,0 +1,28 @@
+#!/usr/bin/make -f
+
+%:
+	dh $@
+
+override_dh_auto_build:
+	po/i18n.sh compile debian/locale
+	msgfmt --desktop --template=src/launcher.desktop.in -d po \
+	       -o debian/font-installer.desktop
+
+override_dh_auto_test:
+ifeq (,$(filter nocheck,$(DEB_BUILD_OPTIONS)))
+	bash tests/test_installer.sh
+	bash tests/test_i18n.sh
+	desktop-file-validate debian/font-installer.desktop
+endif
+
+override_dh_auto_install:
+	install -D -m 0755 src/font-installer.sh \
+	        debian/instalador-de-fontes/usr/bin/font-installer-gui
+	sed -i '1s|^#!.*|#!/bin/bash|' debian/instalador-de-fontes/usr/bin/font-installer-gui
+	install -D -m 0644 debian/font-installer.desktop \
+	        debian/instalador-de-fontes/usr/share/applications/font-installer.desktop
+	mkdir -p debian/instalador-de-fontes/usr/share/locale
+	cp -r debian/locale/. debian/instalador-de-fontes/usr/share/locale/
+
+override_dh_auto_clean:
+	rm -rf debian/locale debian/font-installer.desktop build

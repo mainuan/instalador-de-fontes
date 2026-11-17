@@ -5,7 +5,7 @@ Name=Install Font
 X-KDE-StartupNotify=true
 Icon=font-ttf
 Terminal=false
-Categories=Utility;X-TigerTools;
+Categories=Utility;
 MimeType=font/otf;font/ttf;font/woff;font/woff2;
 NoDisplay=true
 

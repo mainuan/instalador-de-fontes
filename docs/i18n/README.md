@@ -52,9 +52,8 @@ e os testes; o teste de fumaça confere a interface em pt_BR no pacote instalado
   frase foi mantida em inglês para a interface ficar idêntica; um revisor pode
   trocá-la por um pangrama português (ex.: "Um pequeno jabuti xereta viu dez
   cegonhas felizes.") só em `po/pt_BR.po`.
-* **Marca legada:** o msgid do título é genérico ("Font Installer"), mas o pt_BR
-  mantém "Instalador de fontes do Tiger OS". O `.desktop` ainda tem
-  `Categories=Utility;X-TigerTools;` (é `NoDisplay=true`, não aparece no menu).
+* **Título:** o msgid é genérico ("Font Installer"); em pt_BR a janela se
+  chama "Instalador de fontes do Mainuan".
 * Rótulos do formulário são passados ao yad como `RÓTULO:LBL`; traduções não
   devem conter `!` no fim de rótulos nem quebras de linha.
 * Os valores lidos do `fc-scan` não são traduzidos.

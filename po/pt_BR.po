@@ -24,7 +24,7 @@ msgstr "Você precisa fornecer um arquivo!"
 
 #: src/font-installer.sh:25
 msgid "Font Installer"
-msgstr "Instalador de fontes do Tiger OS"
+msgstr "Instalador de fontes do Mainuan"
 
 #. Translators: yad button label (generic confirmation).
 #: src/font-installer.sh:27
@@ -54,7 +54,7 @@ msgstr "Família:"
 #: src/font-installer.sh:50
 #, sh-format
 msgid "Font Installer - $base_name"
-msgstr "Instalador de fontes do Tiger OS - $base_name"
+msgstr "Instalador de fontes do Mainuan - $base_name"
 
 #: src/font-installer.sh:50
 msgid "Foundry:"

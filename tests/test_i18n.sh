@@ -59,8 +59,8 @@ out=$(run pt_BR "")
 for s in "yad-arg: --field=Nome::LBL" "yad-arg: --field=Estilo::LBL" "yad-arg: --field=Tipo::LBL" \
          "yad-arg: --field=Família::LBL" "yad-arg: --field=Fundação: :LBL" \
          "yad-arg: --button=Cancelar:252" "yad-arg: --button=Instalar:0" \
-         "yad-arg: --title=Instalador de fontes do Tiger OS - TestSans-Bold.ttf" \
-         "yad-arg: --title=Instalador de fontes do Tiger OS" \
+         "yad-arg: --title=Instalador de fontes do Mainuan - TestSans-Bold.ttf" \
+         "yad-arg: --title=Instalador de fontes do Mainuan" \
          'yad-arg: --text=Instalando a fonte Test Sans Bold Bold\n' \
          'yad-arg: --text=A instalação foi um sucesso!\n' "yad-arg: --button=Ok" \
          "convert-arg: caption:The quick brown fox jumps over the lazy dog"; do

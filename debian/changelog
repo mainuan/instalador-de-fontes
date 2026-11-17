@@ -6,6 +6,8 @@ instalador-de-fontes (1.1.0) resolute; urgency=medium
     abre um arquivo por vez (%f), já que o programa trata um arquivo só.
   * Sem argumento de arquivo válido, o programa termina com erro (código 1).
   * A família da fonte é exibida sem o sufixo "'s".
+  * Título em pt_BR: "Instalador de fontes do Mainuan" (era "do Tiger OS");
+    sai a categoria X-TigerTools do .desktop.
   * Empacotamento Debian completo (debhelper), página de manual e pipeline de
     CI com testes, lintian e teste de instalação e remoção; a release
     "continuous" publicada a cada push foi substituída por releases por tag.

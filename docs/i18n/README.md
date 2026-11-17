@@ -18,9 +18,9 @@
 ```
 po/i18n.sh, po/i18n.conf   script padrão Mainuan e configuração
 po/POTFILES.in             [Shell] src/font-installer.sh, [Desktop] src/launcher.desktop.in
-po/LINGUAS                 idiomas instalados (hoje só pt_BR)
+po/LINGUAS                 idiomas instalados (33)
 po/instalador-de-fontes.pot
-po/pt_BR.po
+po/<idioma>.po             um catálogo por idioma (pt_BR.po: interface brasileira)
 src/launcher.desktop.in    modelo do .desktop (Name em inglês)
 tests/test_i18n.sh         teste de i18n com yad/fc-scan/fc-cache/convert falsos
 tests/test_installer.sh    teste funcional (instalar, cancelar, erros) com os mesmos stubs

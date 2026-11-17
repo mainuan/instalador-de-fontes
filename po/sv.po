@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: instalador-de-fontes\n"
 "Report-Msgid-Bugs-To: https://github.com/mainuan\n"
-"POT-Creation-Date: 2026-11-16 11:20-0300\n"
+"POT-Creation-Date: 2026-11-17 18:42-0300\n"
 "PO-Revision-Date: 2026-11-16 11:20-0300\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: sv <https://github.com/mainuan>\n"
@@ -76,12 +76,16 @@ msgstr "Stil:"
 msgid "Type:"
 msgstr "Typ:"
 
-#: src/font-installer.sh:55
+#: src/font-installer.sh:54
+msgid "The font could not be installed."
+msgstr "Teckensnittet kunde inte installeras."
+
+#: src/font-installer.sh:60
 #, sh-format
 msgid "Installing the font $font_name $font_style"
 msgstr "Installerar teckensnittet $font_name $font_style"
 
-#: src/font-installer.sh:57
+#: src/font-installer.sh:62
 msgid "The installation was successful!"
 msgstr "Installationen lyckades!"
 

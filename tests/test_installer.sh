@@ -75,6 +75,15 @@ check "font copied to ~/.local/share/fonts" cmp -s "$FONT" "$fonts/TestSans-Bold
 check "success dialog" grep -qxF 'yad-arg: --text=The installation was successful!\n' "$TMP/yad.log"
 check "preview removed after install" test -z "$(ls -A "$TMP/tmp")"
 
+# Falha ao copiar (pasta de fontes sem permissão): erro, sem mensagem de sucesso.
+rm -f "$fonts/TestSans-Bold.ttf"; chmod a-w "$fonts"
+rc=0; run || rc=$?
+chmod u+w "$fonts"
+check "copy failure exits with failure" test "$rc" -ne 0
+check "copy failure dialog" grep -qxF 'yad-arg: --text=The font could not be installed.\n' "$TMP/yad.log"
+check "copy failure has no success dialog" bash -c "! grep -q 'installation was successful' '$TMP/yad.log'"
+check "copy failure removes the preview" test -z "$(ls -A "$TMP/tmp")"
+
 # O .desktop abre um arquivo por processo: o script trata só o primeiro argumento.
 check "desktop entry passes one file (%f)" grep -qx "Exec=font-installer-gui %f" "$ROOT/src/launcher.desktop.in"
 
